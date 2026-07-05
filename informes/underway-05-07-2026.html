@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Underway · Discovery & Plan Q3 2026 — Vertical Agéntica · Finkargo</title>
+<meta name="description" content="Informe ejecutivo del Discovery y plan de acción Q3 2026 de la vertical Agéntica de Producto en Finkargo — Laura Aristizabal, Senior PM.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --fk-marino:#2128B1;
+    --fk-aqua:#78F7FF;
+    --fk-oscuro:#060735;
+    --fk-blanco:#FFFFFF;
+    --ink:#0d0e1f;
+    --ink-2:#3b3d57;
+    --ink-3:#6c6f8a;
+    --line:#e7e8f0;
+    --line-2:#eef0f6;
+    --bg-soft:#f6f7fb;
+    --marino-08:rgba(33,40,177,.08);
+    --marino-14:rgba(33,40,177,.14);
+    --radius:18px;
+    --radius-sm:12px;
+    --shadow:0 1px 2px rgba(6,7,53,.04), 0 12px 40px -18px rgba(6,7,53,.22);
+    --shadow-hover:0 2px 4px rgba(6,7,53,.06), 0 26px 60px -24px rgba(6,7,53,.35);
+    --maxw:1120px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Epilogue','Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    color:var(--ink);
+    background:var(--fk-blanco);
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{line-height:1.14;letter-spacing:-.02em;color:var(--fk-oscuro)}
+  h2{font-weight:800;font-size:clamp(1.7rem,3.4vw,2.5rem)}
+  h3{font-weight:800;font-size:1.22rem}
+  p{color:var(--ink-2)}
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .eyebrow{
+    font-size:.74rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--fk-marino);display:inline-flex;align-items:center;gap:.55rem;
+  }
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--fk-marino);border-radius:2px;display:inline-block}
+  .accent{color:var(--fk-marino)}
+  .lead{font-size:1.16rem;color:var(--ink-2);max-width:56ch}
+
+  /* ============ LOGO ============ */
+  .logo{display:inline-flex;align-items:center;gap:.6rem;font-weight:800;letter-spacing:-.03em}
+  .logo .mark{width:30px;height:30px;flex:0 0 auto}
+  .logo .word{font-size:1.32rem;font-weight:800;letter-spacing:-.04em}
+  .logo .word b{font-weight:800}
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;background:var(--fk-oscuro);color:var(--fk-blanco);
+    padding:34px 0 108px;overflow:hidden;isolation:isolate;
+  }
+  .hero::before{ /* glow */
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:
+      radial-gradient(58% 65% at 82% 8%, rgba(120,247,255,.16), transparent 60%),
+      radial-gradient(50% 60% at 12% 92%, rgba(33,40,177,.55), transparent 62%);
+  }
+  .hero::after{ /* grid */
+    content:"";position:absolute;inset:0;z-index:-1;opacity:.5;
+    background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+    background-size:52px 52px;
+    -webkit-mask-image:radial-gradient(circle at 60% 40%,#000,transparent 78%);
+    mask-image:radial-gradient(circle at 60% 40%,#000,transparent 78%);
+  }
+  .hero .logo .word,.hero .logo{color:#fff}
+  .hero-top{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .hero-badge{
+    font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--fk-aqua);border:1px solid rgba(120,247,255,.34);
+    padding:.4rem .8rem;border-radius:999px;background:rgba(120,247,255,.06)
+  }
+  .hero-body{margin-top:clamp(48px,9vw,104px);max-width:900px}
+  .hero .kicker{
+    font-size:.8rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--fk-aqua);display:block;margin-bottom:20px
+  }
+  .hero h1{
+    color:#fff;font-weight:900;font-size:clamp(2.4rem,6.6vw,4.7rem);letter-spacing:-.035em;
+    line-height:1.02
+  }
+  .hero h1 .hl{
+    background:linear-gradient(120deg,var(--fk-aqua),#bafcff);
+    -webkit-background-clip:text;background-clip:text;color:transparent
+  }
+  .hero-sub{margin-top:26px;font-size:1.2rem;color:rgba(255,255,255,.8);max-width:60ch;font-weight:400}
+  .hero-meta{
+    margin-top:44px;display:flex;flex-wrap:wrap;gap:14px 34px;align-items:center;
+    padding-top:26px;border-top:1px solid rgba(255,255,255,.12)
+  }
+  .hero-meta .m{display:flex;flex-direction:column;gap:2px}
+  .hero-meta .m .lbl{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:700}
+  .hero-meta .m .val{font-size:.98rem;font-weight:700;color:#fff}
+  .scroll-cue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);color:rgba(255,255,255,.5);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
+  .scroll-cue span{width:1px;height:34px;background:linear-gradient(rgba(120,247,255,.7),transparent);animation:cue 2.1s var(--ease) infinite}
+  @keyframes cue{0%{transform:scaleY(.2);transform-origin:top;opacity:0}40%{opacity:1}100%{transform:scaleY(1);transform-origin:top;opacity:0}}
+
+  /* ============ NAV ============ */
+  nav.spy{
+    position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);
+    backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.spy .inner{display:flex;align-items:center;justify-content:space-between;height:62px;gap:1rem}
+  nav.spy .logo .word{font-size:1.06rem;color:var(--fk-oscuro)}
+  nav.spy .links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+  nav.spy .links::-webkit-scrollbar{display:none}
+  nav.spy a{
+    font-size:.82rem;font-weight:600;color:var(--ink-3);text-decoration:none;white-space:nowrap;
+    padding:.5rem .7rem;border-radius:8px;transition:color .2s,background .2s
+  }
+  nav.spy a:hover{color:var(--fk-marino);background:var(--marino-08)}
+  nav.spy a.active{color:var(--fk-marino);background:var(--marino-08)}
+
+  /* ============ SECTION SHELL ============ */
+  section{padding:clamp(56px,8vw,104px) 0;position:relative}
+  section.alt{background:var(--bg-soft)}
+  .sec-head{max-width:62ch;margin-bottom:44px}
+  .sec-head h2{margin-top:16px}
+  .sec-head p{margin-top:16px;font-size:1.08rem}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+
+  /* ============ STATS BAND ============ */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .stats .s{background:#fff;padding:30px 26px}
+  .stats .s .num{font-size:clamp(2rem,4vw,2.9rem);font-weight:900;color:var(--fk-marino);letter-spacing:-.03em;line-height:1}
+  .stats .s .num .u{font-size:1.2rem;color:var(--fk-oscuro)}
+  .stats .s .cap{margin-top:8px;font-size:.86rem;color:var(--ink-3);font-weight:600}
+
+  /* ============ TAKEAWAYS ============ */
+  .takeaways{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:34px}
+  .tk{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+  .tk:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:var(--marino-14)}
+  .tk .ix{font-size:.78rem;font-weight:800;color:var(--fk-marino);letter-spacing:.1em}
+  .tk h3{margin:12px 0 8px;font-size:1.12rem}
+  .tk p{font-size:.95rem}
+
+  /* ============ GRID CARDS ============ */
+  .grid{display:grid;gap:20px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:var(--marino-14)}
+  .card .tag{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--fk-marino)}
+  .card h3{margin:12px 0 8px;font-size:1.06rem}
+  .card p{font-size:.92rem;color:var(--ink-2)}
+
+  /* ============ TWO COL ============ */
+  .split{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:start}
+  .panel-dark{background:var(--fk-oscuro);color:#fff;border-radius:var(--radius);padding:36px;position:relative;overflow:hidden}
+  .panel-dark::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 100% 0,rgba(120,247,255,.14),transparent 60%)}
+  .panel-dark > *{position:relative}
+  .panel-dark h3{color:#fff}
+  .panel-dark p{color:rgba(255,255,255,.78)}
+  .quote{font-size:1.4rem;font-weight:700;line-height:1.34;letter-spacing:-.02em;color:#fff}
+  .quote .hl{color:var(--fk-aqua)}
+  .quote-cite{margin-top:18px;font-size:.84rem;color:rgba(255,255,255,.55);font-weight:600}
+
+  ul.ticks{list-style:none;display:flex;flex-direction:column;gap:14px}
+  ul.ticks li{position:relative;padding-left:30px;font-size:.98rem;color:var(--ink-2)}
+  ul.ticks li::before{content:"";position:absolute;left:0;top:9px;width:14px;height:14px;border-radius:5px;background:var(--marino-14);border:2px solid var(--fk-marino)}
+  ul.ticks.on-dark li{color:rgba(255,255,255,.82)}
+  ul.ticks.on-dark li::before{background:rgba(120,247,255,.18);border-color:var(--fk-aqua)}
+
+  .kv{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .kv:last-child{border-bottom:0}
+  .kv .k{flex:0 0 128px;font-weight:700;color:var(--fk-oscuro);font-size:.92rem}
+  .kv .v{color:var(--ink-2);font-size:.95rem}
+
+  /* ============ PERSONAS ============ */
+  .persona{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+  .persona:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+  .persona .ring{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-weight:900;color:#fff;font-size:1.1rem;background:linear-gradient(135deg,var(--fk-marino),#4a52d6)}
+  .persona h3{margin:16px 0 4px}
+  .persona .role{font-size:.82rem;font-weight:700;color:var(--fk-marino);text-transform:uppercase;letter-spacing:.06em}
+  .persona dl{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+  .persona dt{font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+  .persona dd{font-size:.92rem;color:var(--ink-2)}
+
+  /* ============ ARCH ============ */
+  .arch{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .node{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:22px;text-align:center;transition:transform .3s var(--ease),border-color .3s}
+  .node:hover{transform:translateY(-4px);border-color:var(--marino-14)}
+  .node .dot{width:40px;height:40px;margin:0 auto 12px;border-radius:11px;background:var(--marino-08);display:grid;place-items:center;color:var(--fk-marino)}
+  .node h4{font-size:1rem;color:var(--fk-oscuro)}
+  .node p{font-size:.82rem;color:var(--ink-3);margin-top:6px}
+
+  /* autonomy scale */
+  .scale{display:flex;gap:6px;flex-wrap:wrap;margin-top:26px}
+  .scale .lv{flex:1 1 0;min-width:104px;border:1px solid var(--line);border-radius:10px;padding:14px;background:#fff;transition:border-color .3s,transform .3s}
+  .scale .lv:hover{transform:translateY(-3px)}
+  .scale .lv .g{font-weight:900;color:var(--ink-3);font-size:.9rem}
+  .scale .lv .n{font-size:.86rem;font-weight:700;color:var(--fk-oscuro);margin-top:4px}
+  .scale .lv.hot{border-color:var(--fk-marino);background:var(--marino-08)}
+  .scale .lv.hot .g{color:var(--fk-marino)}
+
+  /* ============ TIMELINE ============ */
+  .tl{position:relative;margin-top:20px}
+  .tl::before{content:"";position:absolute;left:0;right:0;top:26px;height:2px;background:var(--line);z-index:0}
+  .tl-track{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;z-index:1}
+  .tl-step{background:transparent}
+  .tl-step .dot{width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid var(--fk-marino);margin-bottom:22px;position:relative;transition:transform .3s var(--ease)}
+  .tl-step.done .dot{background:var(--fk-marino)}
+  .tl-step.now .dot{border-color:var(--fk-aqua);background:var(--fk-oscuro);box-shadow:0 0 0 5px rgba(120,247,255,.25)}
+  .tl-step:hover .dot{transform:scale(1.18)}
+  .tl-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:20px;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+  .tl-step:hover .tl-card{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:var(--marino-14)}
+  .tl-card .mo{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--fk-marino)}
+  .tl-card h4{font-size:1.04rem;margin:8px 0 6px;color:var(--fk-oscuro)}
+  .tl-card p{font-size:.84rem;color:var(--ink-3)}
+  .tl-card .st{display:inline-block;margin-top:12px;font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:.25rem .6rem;border-radius:999px}
+  .st.s-done{background:#e7f7ee;color:#12794a}
+  .st.s-now{background:rgba(120,247,255,.2);color:#0b5560}
+  .st.s-next{background:var(--marino-08);color:var(--fk-marino)}
+
+  /* ============ PLAN ============ */
+  .plan-row{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:26px 0;border-bottom:1px solid var(--line);align-items:start}
+  .plan-row:last-child{border-bottom:0}
+  .plan-row .mo{font-weight:900;font-size:1.5rem;color:var(--fk-marino);letter-spacing:-.03em}
+  .plan-row .mo small{display:block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+  .plan-row h4{font-size:1.08rem;margin-bottom:10px}
+  .plan-row ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .plan-row li{position:relative;padding-left:24px;font-size:.95rem;color:var(--ink-2)}
+  .plan-row li::before{content:"→";position:absolute;left:0;color:var(--fk-marino);font-weight:800}
+
+  /* recommendation callouts */
+  .rec{display:grid;grid-template-columns:44px 1fr;gap:18px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--fk-marino);border-radius:var(--radius-sm);padding:22px;margin-top:16px}
+  .rec .ri{width:44px;height:44px;border-radius:11px;background:var(--marino-08);display:grid;place-items:center;color:var(--fk-marino);font-weight:900}
+  .rec h4{font-size:1rem;margin-bottom:5px}
+  .rec p{font-size:.92rem}
+
+  /* KPI */
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .kpi{background:var(--fk-oscuro);color:#fff;border-radius:var(--radius);padding:28px;position:relative;overflow:hidden}
+  .kpi::after{content:"";position:absolute;right:-30px;bottom:-30px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(120,247,255,.16),transparent 70%)}
+  .kpi .n{font-size:2.6rem;font-weight:900;color:var(--fk-aqua);letter-spacing:-.03em;line-height:1}
+  .kpi .lbl{margin-top:10px;font-size:.94rem;color:rgba(255,255,255,.8);font-weight:600}
+  .kpi .sub{margin-top:6px;font-size:.78rem;color:rgba(255,255,255,.5)}
+
+  /* focus/opportunities */
+  .opp{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+  .opp:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+  .opp .h{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+  .opp .h .ic{width:38px;height:38px;border-radius:10px;background:var(--marino-08);display:grid;place-items:center;color:var(--fk-marino);flex:0 0 auto}
+  .opp h3{font-size:1.02rem}
+  .opp p{font-size:.9rem}
+  .opp .lever{margin-top:14px;font-size:.82rem;color:var(--fk-marino);font-weight:700;display:flex;gap:8px;align-items:flex-start}
+  .opp .lever::before{content:"◇";flex:0 0 auto}
+
+  /* next steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:10px}
+  .step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;position:relative}
+  .step .no{font-size:.8rem;font-weight:800;color:var(--fk-marino);letter-spacing:.1em}
+  .step h4{margin:10px 0 8px}
+  .step p{font-size:.9rem}
+
+  .cadence{margin-top:34px;background:var(--fk-oscuro);color:#fff;border-radius:var(--radius);padding:34px;display:flex;gap:28px;flex-wrap:wrap;align-items:center;justify-content:space-between;overflow:hidden;position:relative}
+  .cadence::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 120% at 90% 10%,rgba(120,247,255,.14),transparent 55%)}
+  .cadence > *{position:relative}
+  .cadence h3{color:#fff;font-size:1.3rem}
+  .cadence p{color:rgba(255,255,255,.75);margin-top:8px;max-width:52ch;font-size:.95rem}
+  .cadence .versions{display:flex;gap:10px;flex-wrap:wrap}
+  .cadence .ver{font-family:'Poppins',monospace;font-size:.82rem;font-weight:600;padding:.5rem .8rem;border-radius:8px;border:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.85)}
+  .cadence .ver.cur{border-color:var(--fk-aqua);color:var(--fk-oscuro);background:var(--fk-aqua)}
+
+  /* ============ FOOTER ============ */
+  footer{background:var(--fk-oscuro);color:#fff;padding:56px 0 40px}
+  footer .row{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end}
+  footer .logo .word{color:#fff}
+  footer .meta{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.9}
+  footer .conf{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fk-aqua);font-weight:700}
+  footer hr{border:0;border-top:1px solid rgba(255,255,255,.12);margin:34px 0 22px}
+
+  /* ============ RESPONSIVE ============ */
+  @media(max-width:900px){
+    .split{grid-template-columns:1fr;gap:28px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .takeaways,.g3,.g4,.kpis,.steps{grid-template-columns:1fr}
+    .g2{grid-template-columns:1fr}
+    .arch{grid-template-columns:repeat(2,1fr)}
+    .tl::before{display:none}
+    .tl-track{grid-template-columns:1fr;gap:16px}
+    .tl-step{display:grid;grid-template-columns:20px 1fr;gap:16px;align-items:start}
+    .tl-step .dot{margin:6px 0 0}
+    .plan-row{grid-template-columns:1fr;gap:12px}
+    nav.spy .links{display:none}
+  }
+  @media(max-width:560px){
+    .stats{grid-template-columns:1fr}
+    .persona,.card,.tk,.opp{padding:22px}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .reveal{opacity:1;transform:none}
+  }
+
+  /* ============ PRINT ============ */
+  @media print{
+    :root{--shadow:none;--shadow-hover:none}
+    body{overflow:visible}
+    nav.spy,.scroll-cue{display:none!important}
+    .hero,.panel-dark,.kpi,.cadence,footer{background:#fff!important;color:#000!important}
+    .hero h1,.hero .kicker,.hero-sub,.hero-meta .m .val,.panel-dark h3,.quote,.kpi .n,.cadence h3{color:var(--fk-oscuro)!important}
+    .hero::before,.hero::after{display:none}
+    .reveal{opacity:1!important;transform:none!important}
+    section{padding:28px 0;page-break-inside:avoid}
+    .card,.tk,.persona,.opp,.node,.tl-card{box-shadow:none!important;border:1px solid #ccc!important}
+    .hero-meta{border-color:#ccc}
+    a{color:#000!important;text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="inicio">
+  <div class="wrap">
+    <div class="hero-top">
+      <div class="logo">
+        <svg class="mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <rect x="1.5" y="1.5" width="37" height="37" rx="11" stroke="#78F7FF" stroke-width="2"/>
+          <path d="M14 27V13.5C14 12.1 15.1 11 16.5 11H26" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/>
+          <path d="M14 20H23" stroke="#78F7FF" stroke-width="3.2" stroke-linecap="round"/>
+        </svg>
+        <span class="word">finkargo</span>
+      </div>
+      <span class="hero-badge">Confidencial · Uso interno</span>
+    </div>
+
+    <div class="hero-body">
+      <span class="kicker">Vertical Agéntica · Producto</span>
+      <h1>Underway<span class="hl">.</span><br>Discovery &amp; Plan Q3 2026</h1>
+      <p class="hero-sub">Síntesis de dos semanas de descubrimiento en Finkargo: entendimiento del negocio, panorama del terreno y el plan de acción con el que la vertical de agentes de IA aporta al momento más importante de la compañía.</p>
+
+      <div class="hero-meta">
+        <div class="m"><span class="lbl">Autora</span><span class="val">Laura Aristizabal · Senior PM</span></div>
+        <div class="m"><span class="lbl">Audiencia</span><span class="val">Head of Product · Equipo · C-Level</span></div>
+        <div class="m"><span class="lbl">Corte</span><span class="val">5 de julio, 2026</span></div>
+        <div class="m"><span class="lbl">Estado</span><span class="val">Documento vivo · v1</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span></span>Explorar</div>
+</header>
+
+<!-- ============ NAV ============ -->
+<nav class="spy">
+  <div class="wrap inner">
+    <div class="logo"><span class="word">finkargo<span style="color:var(--fk-marino)">.</span></span></div>
+    <div class="links">
+      <a href="#resumen">Resumen</a>
+      <a href="#partida">Punto de partida</a>
+      <a href="#negocio">El negocio</a>
+      <a href="#panorama">Panorama</a>
+      <a href="#usuario">El usuario</a>
+      <a href="#vertical">La vertical</a>
+      <a href="#roadmap">Roadmap Q3</a>
+      <a href="#plan">Mi plan</a>
+      <a href="#foco">Oportunidades</a>
+      <a href="#kpis">KPIs</a>
+      <a href="#siguiente">Siguiente</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ RESUMEN EJECUTIVO ============ -->
+<section id="resumen">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Resumen ejecutivo</span>
+      <h2>Dos semanas para entender el terreno.<br>Un trimestre para marcar la diferencia.</h2>
+      <p>Entre el 22 de junio y el 3 de julio recorrí la operación completa de Finkargo a través de conversaciones 1:1 y sesiones grupales con cada área. El objetivo: entender el negocio, sus retos y sus prioridades antes de enfocarme de lleno en construir agentes. Esto es lo que encontré y hacia dónde voy.</p>
+    </div>
+
+    <div class="stats reveal d1">
+      <div class="s"><div class="num" data-count="2">0</div><div class="cap">Semanas de Discovery</div></div>
+      <div class="s"><div class="num" data-count="34">0</div><div class="cap">Conversaciones documentadas</div></div>
+      <div class="s"><div class="num" data-count="10"><span class="u">+</span></div><div class="cap">Áreas exploradas</div></div>
+      <div class="s"><div class="num" data-count="4">0</div><div class="cap">Agentes en el roadmap Q3</div></div>
+    </div>
+
+    <div class="takeaways">
+      <div class="tk reveal d1">
+        <div class="ix">01</div>
+        <h3>El mandato es claro</h3>
+        <p>Reorganizar Producto alrededor de agentes de IA es una directriz formal del CEO y el C-Level. Mi vertical es la de mayor alcance en este momento.</p>
+      </div>
+      <div class="tk reveal d2">
+        <div class="ix">02</div>
+        <h3>La demo ancla la Serie B</h3>
+        <p>Extracción de documentos + alertas de vencimiento por WhatsApp es el primer agente de Finkargo y la pieza que se le muestra al fondo líder.</p>
+      </div>
+      <div class="tk reveal d3">
+        <div class="ix">03</div>
+        <h3>El flujo primero, el agente después</h3>
+        <p>Un agente solo se construye sobre un flujo que ya existe y funciona. Mi rol es sincronizar la visión de negocio con la ejecución técnica y definir flujos, no features sueltas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PUNTO DE PARTIDA ============ -->
+<section id="partida" class="alt">
+  <div class="wrap">
+    <div class="split">
+      <div class="reveal">
+        <span class="eyebrow">Mi punto de partida</span>
+        <h2 style="margin-top:16px">De dónde vengo y qué se me pidió liderar</h2>
+        <p class="lead" style="margin-top:18px">Ingresé el 22 de junio de 2026 como Senior Product Manager para liderar el pilar de <strong>Agentes</strong> dentro de Producto: construir sistemas agénticos sobre la plataforma que usan los clientes, para facilitar transacciones y acelerar la adopción digital.</p>
+        <ul class="ticks" style="margin-top:26px">
+          <li>Mi mandato: centralizar los requerimientos de la vertical, sincronizar la visión de negocio con el plan de la célula técnica, y definir <strong>flujos completos</strong>, no funcionalidades aisladas.</li>
+          <li>Foco inmediato: <strong>Yeyo</strong>, el agente conversacional de WhatsApp para financiamiento — la primera pieza cara al cliente.</li>
+          <li>Estructuré el Discovery como un barrido transversal: liderazgo, Producto, Tech, Data, Arquitectura, Comercial, Marketing y Automatización.</li>
+        </ul>
+      </div>
+      <div class="reveal d2">
+        <div class="panel-dark">
+          <h3 style="margin-bottom:20px">Por qué encajo con este reto</h3>
+          <div class="kv"><div class="k" style="color:#fff">8+ años</div><div class="v" style="color:rgba(255,255,255,.78)">en producto digital, del prepago móvil a la banca y el factoring.</div></div>
+          <div class="kv"><div class="k" style="color:#fff">Fintech B2B</div><div class="v" style="color:rgba(255,255,255,.78)">agentes de factoring en tres monedas — entiendo el negocio de mover dinero y garantías.</div></div>
+          <div class="kv"><div class="k" style="color:#fff">Discovery LATAM</div><div class="v" style="color:rgba(255,255,255,.78)">práctica consultora de descubrimiento y desarrollo de producto en la región y EE. UU.</div></div>
+          <div class="kv"><div class="k" style="color:#fff">IA aplicada</div><div class="v" style="color:rgba(255,255,255,.78)">formación en inteligencia artificial orientada a producto agéntico.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EL NEGOCIO ============ -->
+<section id="negocio">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Entendimiento del negocio</span>
+      <h2>Finkargo no es una plataforma de financiamiento.</h2>
+      <p>Es <strong>el sistema operativo del comercio exterior</strong>. El cliente vive en la intersección de dinero, carga y pagos — un lugar que ningún banco, agente de carga ni ERP de pyme ocupa al mismo tiempo. Ahí está el moat.</p>
+    </div>
+
+    <div class="split" style="margin-bottom:44px">
+      <div class="reveal">
+        <h3 style="margin-bottom:16px">El modelo, en simple</h3>
+        <ul class="ticks">
+          <li>Financia hasta el <strong>70% de una importación</strong> usando la propia mercancía en tránsito como garantía — no es factoraje.</li>
+          <li>Hoy el cliente solo financia <strong>~25% de sus importaciones</strong> con Finkargo. El otro 75% es invisible: ahí está la oportunidad.</li>
+          <li>Tres productos activos: <strong>Paga</strong> (financiamiento), <strong>Analiza</strong> (inteligencia de mercado) y <strong>Protege</strong> (seguro de carga).</li>
+          <li>La operación logística — hoy manual — es el corazón real del negocio y el terreno natural de los agentes.</li>
+        </ul>
+      </div>
+      <div class="reveal d2">
+        <div class="panel-dark">
+          <div class="quote">"El cliente lo gestiona todo en Excel y no lo suelta por control. La entrada es la <span class="hl">conversación</span> — desplazar el Excel de forma natural hasta que Finkargo sea su equipo de comercio exterior."</div>
+          <div class="quote-cite">— Tesis de negocio, liderazgo ejecutivo</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid g3">
+      <div class="card reveal">
+        <div class="tag">El momento</div>
+        <h3>Serie B en Q3</h3>
+        <p>Finkargo levanta su Serie B con compromiso de fondo líder esperado este trimestre. El objetivo #1 de Producto es <strong>demostrar adopción digital de la plataforma</strong> como insumo de la ronda.</p>
+      </div>
+      <div class="card reveal d1">
+        <div class="tag">El moat</div>
+        <h3>Dinero + carga + relación</h3>
+        <p>Un modelo del mundo del importador que integra financiamiento, logística y la relación continua. Ningún competidor horizontal lo tiene hoy — la ventana es <strong>ahora</strong>.</p>
+      </div>
+      <div class="card reveal d2">
+        <div class="tag">Mi conexión directa</div>
+        <h3>Yeyo es la demo</h3>
+        <p>La primera pieza que se le muestra al fondo — extracción de documentos + alertas por WhatsApp — es exactamente el arranque de mi vertical. Mi trabajo alimenta la narrativa de la ronda.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PANORAMA ============ -->
+<section id="panorama" class="alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Panorama del Discovery</span>
+      <h2>Un insight por área</h2>
+      <p>Lo que cada conversación aportó al mapa. Estos son los hilos que conectan la operación con la oportunidad agéntica.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card reveal"><div class="tag">Producto</div><h3>Tres pilares</h3><p>Payments, System of Record (logística) y Agents. Metodología "mini proyecto": entregables funcionales en producción en 1–4 semanas.</p></div>
+      <div class="card reveal d1"><div class="tag">Tech / Ingeniería</div><h3>Célula Flow</h3><p>Construye agentes conversacionales que reemplazan formularios, sobre un framework propio agnóstico al motor de IA. Principio rector: flujo primero.</p></div>
+      <div class="card reveal d2"><div class="tag">Finkargo Brain</div><h3>El backbone de datos</h3><p>Orquestador interno en producción con 600k+ documentos indexados. Es la capa sobre la que se apoyan todos los agentes.</p></div>
+      <div class="card reveal"><div class="tag">Data</div><h3>Señales de importación</h3><p>Datos DIAN/SAT en el data warehouse alimentan las alertas proactivas y el scoring de crédito.</p></div>
+      <div class="card reveal d1"><div class="tag">Arquitectura</div><h3>Migración a microservicios</h3><p>Plataforma de 4 años en proceso de modernización; la dirección es migrar la interacción del cliente a WhatsApp.</p></div>
+      <div class="card reveal d2"><div class="tag">Comercial / Loyalty</div><h3>Colombia ≠ México</h3><p>Perfiles de uso, regulación y activación distintos por país. Insumo clave para secuenciar el rollout de los agentes.</p></div>
+      <div class="card reveal"><div class="tag">Marketing / Revenue</div><h3>Medir el comportamiento</h3><p>Hoy falta visibilidad estandarizada del comportamiento del cliente — justo el dato que la Serie B necesita ver.</p></div>
+      <div class="card reveal d1"><div class="tag">Business Automation</div><h3>Cultura de IA interna</h3><p>Automatización de procesos y un programa de "AI Champions" ya en marcha — terreno fértil y aliado para lo agéntico.</p></div>
+      <div class="card reveal d2"><div class="tag">Diseño / UX</div><h3>Importación como centro</h3><p>La gran transición: Paga es el gancho de entrada, pero la visión cubre el flujo completo de importación.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EL USUARIO ============ -->
+<section id="usuario">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">El usuario primero</span>
+      <h2>Diseñar por psicográficos, no por demografía</h2>
+      <p>El motor de cada perfil —control, traducción, protección— importa más que su cargo, el tamaño de la empresa o el país. El perfil <em>es</em> la personalidad que se inyecta en cada capa del agente.</p>
+    </div>
+    <div class="grid g3">
+      <div class="persona reveal">
+        <div class="ring">E</div>
+        <div class="role">Especialista de rol</div>
+        <h3>Amplificar su criterio</h3>
+        <dl>
+          <dt>Motor</dt><dd>Ejecuta una función puntual con visión de túnel; se autoprotege.</dd>
+          <dt>Rechaza</dt><dd>"Automatizamos tu trabajo" — lo lee como amenaza.</dd>
+          <dt>Gancho</dt><dd>Amplificar su criterio con human-in-the-loop, no reemplazarlo.</dd>
+        </dl>
+      </div>
+      <div class="persona reveal d1">
+        <div class="ring">C</div>
+        <div class="role">El colaborativo</div>
+        <h3>Habilitar velocidad</h3>
+        <dl>
+          <dt>Motor</dt><dd>Traduce información dispersa en un artefacto para su equipo.</dd>
+          <dt>Rechaza</dt><dd>Cambiar su método manual sin sentirse seguro.</dd>
+          <dt>Gancho</dt><dd>Darle velocidad, no automatizar por él.</dd>
+        </dl>
+      </div>
+      <div class="persona reveal d2">
+        <div class="ring">T</div>
+        <div class="role">El todólogo</div>
+        <h3>Ver todo antes que nadie</h3>
+        <dl>
+          <dt>Motor</dt><dd>Maneja todo a la vez, motivado por el control. Es quien firma y decide usar Finkargo.</dd>
+          <dt>Rechaza</dt><dd>Sentirse reemplazable.</dd>
+          <dt>Gancho</dt><dd>"Ve todo antes que nadie" — su periódico favorito, no "lo hacemos por ti".</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="panel-dark reveal" style="margin-top:24px">
+      <div class="quote" style="font-size:1.25rem">La adopción no ocurre por convencimiento. Ocurre cuando una crisis rompe la confianza en el sistema actual y aparece <span class="hl">alguien de confianza que puede absorber la tarea</span>. Cada capa agéntica debe pedirle al usuario que haga menos, no que aprenda más.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LA VERTICAL ============ -->
+<section id="vertical" class="alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">La vertical Agéntica</span>
+      <h2>Yeyo — el agente activador</h2>
+      <p>Un único punto de contacto conversacional en WhatsApp que, con el tiempo, activa cinco capacidades en nombre del importador: financiamiento, pagos, logística, onboarding y garantías. Debajo, Finkargo Brain como capa de datos.</p>
+    </div>
+
+    <div class="split" style="margin-bottom:40px">
+      <div class="reveal">
+        <h3 style="margin-bottom:16px">Qué hace hoy</h3>
+        <ul class="ticks">
+          <li><strong>Responde consultas</strong> reactivas: cupo disponible, estado de pagos, garantías.</li>
+          <li><strong>Envía alertas proactivas</strong> basadas en señales de importación: patrones estacionales, cambios de arancel, volumen, inactividad.</li>
+          <li>Cada solicitud pasa por <strong>firma del representante legal</strong> y revisión de la mesa de control — human-in-the-loop por diseño.</li>
+          <li>Rollout: <strong>México primero</strong>, Colombia después.</li>
+        </ul>
+      </div>
+      <div class="reveal d2">
+        <h3 style="margin-bottom:16px">La arquitectura</h3>
+        <div class="arch">
+          <div class="node"><div class="dot">◈</div><h4>Ana</h4><p>Motor de alertas sobre señales DIAN/SAT.</p></div>
+          <div class="node"><div class="dot">◆</div><h4>FK Brain</h4><p>Orquestador central, 600k+ docs.</p></div>
+          <div class="node"><div class="dot">◇</div><h4>Soli</h4><p>Copiloto in-app que precarga la solicitud.</p></div>
+          <div class="node"><div class="dot">▣</div><h4>IDP</h4><p>Extracción de datos de documentos.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <h3 style="margin-bottom:6px">¿Dónde está Yeyo en la escala de autonomía?</h3>
+      <p style="font-size:.95rem;max-width:64ch">Ser rigurosos con el lenguaje: no todo lo que usa IA es un agente. Yeyo combina alertas y automatización hoy, y apunta a razonar y recomendar — sin sobre-prometer autonomía que el sistema aún no tiene.</p>
+      <div class="scale">
+        <div class="lv hot"><div class="g">A</div><div class="n">Alerta</div></div>
+        <div class="lv hot"><div class="g">B</div><div class="n">Automatización</div></div>
+        <div class="lv"><div class="g">C</div><div class="n">Chatbot</div></div>
+        <div class="lv"><div class="g">D</div><div class="n">AI Assistant</div></div>
+        <div class="lv"><div class="g">E</div><div class="n">Copilot</div></div>
+        <div class="lv hot"><div class="g">F</div><div class="n">Agente de IA →</div></div>
+        <div class="lv"><div class="g">G</div><div class="n">Agentic workflow</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROADMAP ============ -->
+<section id="roadmap">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Roadmap Q3 2026</span>
+      <h2>Cuatro agentes, una secuencia</h2>
+      <p>El roadmap converge en septiembre en un agente orquestador de flujo de caja. Cada mes añade una capacidad sobre un flujo ya validado en la plataforma.</p>
+    </div>
+    <div class="tl reveal">
+      <div class="tl-track">
+        <div class="tl-step done">
+          <div class="dot"></div>
+          <div class="tl-card">
+            <div class="mo">Junio</div>
+            <h4>Financing Agent</h4>
+            <p>V1.0 en vivo: solicitud de operación desde el chat.</p>
+            <span class="st s-done">Hito cumplido</span>
+          </div>
+        </div>
+        <div class="tl-step now">
+          <div class="dot"></div>
+          <div class="tl-card">
+            <div class="mo">Julio</div>
+            <h4>Logistics Agent</h4>
+            <p>Onboarding por WhatsApp, tracking de carga y notificaciones proactivas.</p>
+            <span class="st s-now">En curso</span>
+          </div>
+        </div>
+        <div class="tl-step">
+          <div class="dot"></div>
+          <div class="tl-card">
+            <div class="mo">Agosto</div>
+            <h4>Payments Agent</h4>
+            <p>Pay links y ejecución de pagos desde la conversación.</p>
+            <span class="st s-next">Planeado</span>
+          </div>
+        </div>
+        <div class="tl-step">
+          <div class="dot"></div>
+          <div class="tl-card">
+            <div class="mo">Septiembre</div>
+            <h4>Cashflow Orchestrator</h4>
+            <p>Agente orquestador con pre-costing. Cierre de Q3.</p>
+            <span class="st s-next">Meta Q3 ★</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-dark reveal" style="margin-top:32px">
+      <span class="eyebrow" style="color:var(--fk-aqua)">El ancla del trimestre</span>
+      <div class="quote" style="margin-top:16px;font-size:1.4rem">Extracción de documentos <span class="hl">+</span> alertas de vencimiento por WhatsApp <span class="hl">=</span> el primer agente de Finkargo, y la demo de la Serie B.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MI PLAN ============ -->
+<section id="plan" class="alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Mi plan de acción Q3</span>
+      <h2>Cómo aporto desde la vertical</h2>
+      <p>Mi punto de vista sobre dónde poner el peso este trimestre — priorizado por lo que la compañía necesita para cumplir el objetivo de adopción y asegurar la demo.</p>
+    </div>
+
+    <div class="reveal" style="margin-bottom:36px">
+      <div class="rec">
+        <div class="ri">1</div>
+        <div><h4>Asegurar la demo de la Serie B como prioridad cero</h4><p>Blindar las dos capacidades ancla —extracción de documentos (P1) y alertas de vencimiento (P2)— con confiabilidad demostrable. Todo lo demás se subordina a que esa pieza brille frente al fondo.</p></div>
+      </div>
+      <div class="rec">
+        <div class="ri">2</div>
+        <div><h4>Tomar la propiedad de Yeyo con una transición limpia</h4><p>Recibir el conocimiento funcional del owner saliente antes de finales de agosto, con documentación viva y criterios de aceptación claros — sin perder contexto en el traspaso.</p></div>
+      </div>
+      <div class="rec">
+        <div class="ri">3</div>
+        <div><h4>Instaurar medición de adopción desde el día uno</h4><p>Definir y estandarizar las métricas de comportamiento del agente (apertura, conversión, tiempo ahorrado) para que la narrativa de adopción de la Serie B se sostenga en datos, no en anécdotas.</p></div>
+      </div>
+      <div class="rec">
+        <div class="ri">4</div>
+        <div><h4>Definir flujos, no features — con calidad incorporada</h4><p>Llevar cada capacidad como un flujo completo validado end-to-end, con aseguramiento de calidad desde la ideación. Ingeniería y producto alineados temprano en cada kickoff.</p></div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <h3 style="margin-bottom:8px">Hitos por mes</h3>
+      <div class="plan-row">
+        <div class="mo">Jul<small>Ahora</small></div>
+        <div>
+          <h4>Estabilizar y demostrar</h4>
+          <ul>
+            <li>Yeyo en staging validado; extracción de documentos confiable para la demo.</li>
+            <li>Alertas de vencimiento activas en el rollout de México.</li>
+            <li>Marco de métricas de adopción definido y conectado a Finkargo Brain.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="plan-row">
+        <div class="mo">Ago<small>Escalar</small></div>
+        <div>
+          <h4>Propiedad y expansión</h4>
+          <ul>
+            <li>Transición completa de la propiedad de Yeyo.</li>
+            <li>Capacidades de logística y pagos integradas al agente.</li>
+            <li>Primeros clientes usando Yeyo de forma recurrente en México → preparar Colombia.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="plan-row">
+        <div class="mo">Sep<small>Orquestar</small></div>
+        <div>
+          <h4>Cerrar Q3 con el orquestador</h4>
+          <ul>
+            <li>Cashflow Orchestrator con pre-costing en demo redonda.</li>
+            <li>Métricas de adopción consolidadas como insumo de la ronda.</li>
+            <li>Base lista para escalar la vertical hacia Q4.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPORTUNIDADES ============ -->
+<section id="foco">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Áreas de foco</span>
+      <h2>Las palancas que voy a liderar</h2>
+      <p>Cada reto identificado en el Discovery es una palanca de valor. Estas son las que tomo como mías desde la vertical Agéntica.</p>
+    </div>
+    <div class="grid g2">
+      <div class="opp reveal">
+        <div class="h"><div class="ic">◎</div><h3>Confiabilidad de la extracción</h3></div>
+        <p>El cliente transacciona sobre los datos que el agente extrae. La barra es alta y no negociable.</p>
+        <div class="lever">Cerrar la decisión técnica de extracción y validar contra un umbral de confiabilidad medible antes de escalar.</div>
+      </div>
+      <div class="opp reveal d1">
+        <div class="h"><div class="ic">◷</div><h3>Medición de adopción</h3></div>
+        <p>Hoy los datos de comportamiento del cliente están dispersos — justo lo que la Serie B necesita ver.</p>
+        <div class="lever">Estandarizar el tracking de adopción digital como capacidad de la vertical, no como reporte manual.</div>
+      </div>
+      <div class="opp reveal d2">
+        <div class="h"><div class="ic">◈</div><h3>Calidad del agente</h3></div>
+        <p>Un agente cara al cliente necesita aseguramiento de calidad tan riguroso como cualquier flujo crítico.</p>
+        <div class="lever">Incorporar QA y evaluaciones (evals) al ciclo de vida del agente desde la ideación.</div>
+      </div>
+      <div class="opp reveal d3">
+        <div class="h"><div class="ic">⇄</div><h3>Alineación producto–ingeniería</h3></div>
+        <p>Las decisiones de mayor impacto necesitan llegar con claridad y a tiempo a quien construye.</p>
+        <div class="lever">Involucrar a ingeniería temprano en cada kickoff y sostener un único punto de verdad de requerimientos.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KPIs ============ -->
+<section id="kpis" class="alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Métricas de éxito</span>
+      <h2>Cómo sabremos que funciona</h2>
+      <p>Los KPIs del agente y la meta macro de la compañía. Estas son las cifras contra las que mediré el progreso en cada corte mensual de este informe.</p>
+    </div>
+    <div class="kpis">
+      <div class="kpi reveal"><div class="n">≥40%</div><div class="lbl">Apertura de alertas</div><div class="sub">Engagement del canal WhatsApp</div></div>
+      <div class="kpi reveal d1"><div class="n">≥15%</div><div class="lbl">Conversión alerta → operación</div><div class="sub">La alerta genera negocio real</div></div>
+      <div class="kpi reveal d2"><div class="n">≥50%</div><div class="lbl">Reducción de tiempo de operación</div><div class="sub">Menos carga cognitiva para el cliente</div></div>
+    </div>
+    <div class="grid g3" style="margin-top:20px">
+      <div class="card reveal"><div class="tag">Adopción Yeyo</div><h3>10 clientes activos</h3><p>Usando el agente ≥2 veces al mes como métrica operativa de tracción temprana.</p></div>
+      <div class="card reveal d1"><div class="tag">Meta macro</div><h3>600 → 1.000 clientes</h3><p>El norte de la compañía, a un ritmo de ~30 clientes nuevos por mes.</p></div>
+      <div class="card reveal d2"><div class="tag">La oportunidad</div><h3>Capturar el 75%</h3><p>Las importaciones que hoy no pasan por Finkargo — el espacio que la vertical ayuda a abrir.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SIGUIENTE ============ -->
+<section id="siguiente">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Próximos pasos</span>
+      <h2>Un documento vivo</h2>
+      <p>Este informe se regenera cada mes. No es una foto — es una línea de tiempo del progreso de la vertical hacia el cierre de Q3.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="no">PASO 01</div><h4>Ejecutar julio</h4><p>Estabilizar Yeyo y asegurar la demo. Conectar el marco de métricas de adopción.</p></div>
+      <div class="step reveal d1"><div class="no">PASO 02</div><h4>Medir y ajustar</h4><p>Primer corte de KPIs reales. Ajustar prioridades con datos del comportamiento del cliente.</p></div>
+      <div class="step reveal d2"><div class="no">PASO 03</div><h4>Versionar el avance</h4><p>Nuevo <code>underway-</code> cada mes en el repositorio de tracking, contando la evolución.</p></div>
+    </div>
+
+    <div class="cadence reveal">
+      <div>
+        <h3>Cómo evoluciona este informe</h3>
+        <p>Cada versión mensual es un archivo nuevo y un commit en git. El historial cuenta la historia del trimestre — del entendimiento inicial al cierre de Q3.</p>
+      </div>
+      <div class="versions">
+        <span class="ver cur">underway-05-07-2026</span>
+        <span class="ver">underway-··-08-2026</span>
+        <span class="ver">underway-··-09-2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <div>
+        <div class="logo" style="margin-bottom:16px">
+          <svg class="mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <rect x="1.5" y="1.5" width="37" height="37" rx="11" stroke="#78F7FF" stroke-width="2"/>
+            <path d="M14 27V13.5C14 12.1 15.1 11 16.5 11H26" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/>
+            <path d="M14 20H23" stroke="#78F7FF" stroke-width="3.2" stroke-linecap="round"/>
+          </svg>
+          <span class="word">finkargo</span>
+        </div>
+        <div class="conf">Confidencial · Uso interno</div>
+      </div>
+      <div class="meta">
+        <strong style="color:#fff">Underway · Discovery &amp; Plan Q3 2026</strong><br>
+        Laura Aristizabal · Senior Product Manager, Vertical Agéntica<br>
+        Corte: 5 de julio, 2026 · Documento vivo — v1
+      </div>
+    </div>
+    <hr>
+    <div class="meta" style="font-size:.74rem">El sistema operativo del comercio exterior. En tres meses, el sistema que la región usa.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Reveal on scroll */
+  var reveals = document.querySelectorAll('.reveal');
+  if(reduce || !('IntersectionObserver' in window)){
+    reveals.forEach(function(el){el.classList.add('in')});
+  } else {
+    var ro = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target); }
+      });
+    },{threshold:.14, rootMargin:'0px 0px -8% 0px'});
+    reveals.forEach(function(el){ro.observe(el)});
+  }
+
+  /* Count-up */
+  function animateCount(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    if(reduce){ el.childNodes[0].nodeValue = target; return; }
+    var dur = 1100, start = null;
+    function tick(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts-start)/dur,1);
+      var eased = 1-Math.pow(1-p,3);
+      var val = Math.round(target*eased);
+      el.childNodes[0].nodeValue = val;
+      if(p<1) requestAnimationFrame(tick);
+      else el.childNodes[0].nodeValue = target;
+    }
+    requestAnimationFrame(tick);
+  }
+  var counters = document.querySelectorAll('[data-count]');
+  if('IntersectionObserver' in window){
+    var co = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ animateCount(e.target); co.unobserve(e.target); } });
+    },{threshold:.6});
+    counters.forEach(function(el){co.observe(el)});
+  } else {
+    counters.forEach(function(el){ el.childNodes[0].nodeValue = el.getAttribute('data-count'); });
+  }
+
+  /* Scroll-spy */
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.spy a'));
+  var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  if('IntersectionObserver' in window && sections.length){
+    var so = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var id = '#'+e.target.id;
+          links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')===id); });
+        }
+      });
+    },{rootMargin:'-45% 0px -50% 0px'});
+    sections.forEach(function(s){so.observe(s)});
+  }
+})();
+</script>
+</body>
+</html>
