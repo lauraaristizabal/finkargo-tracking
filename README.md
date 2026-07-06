@@ -19,14 +19,15 @@ tiempo del progreso.
 ## Convención de nombres
 
 ```
-informes/underway-dd-mm-aaaa.html
+informes/underway-mesaaaa.html
 ```
 
-Un archivo nuevo por versión mensual + un commit descriptivo. Ejemplo:
+Un informe de cierre por mes (mes en español, 3 letras minúsculas) + un commit descriptivo. Ejemplo:
 
-- `informes/underway-05-07-2026.html` — línea base tras el Discovery (jun–jul 2026).
-- `informes/underway-05-08-2026.html` — corte de agosto (Logistics Agent, avance demo Serie B).
-- `informes/underway-05-09-2026.html` — cierre de Q3 (Cashflow Orchestrator).
+- `informes/underway-jun2026.html` — línea base tras el Discovery (jun–jul 2026).
+- `informes/underway-jul2026.html` — cierre de julio.
+- `informes/underway-ago2026.html` — cierre de agosto (Logistics Agent, avance demo Serie B).
+- `informes/underway-sep2026.html` — cierre de Q3 (Cashflow Orchestrator).
 
 ## Cómo se usa
 
