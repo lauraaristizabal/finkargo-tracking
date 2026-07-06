@@ -33,6 +33,20 @@ Un archivo nuevo por versión mensual + un commit descriptivo. Ejemplo:
 Cada archivo es **self-contained**: se abre directamente en el navegador (doble clic o `file://`),
 sin dependencias locales. Para exportar a PDF, imprimir desde el navegador (tiene estilos `@media print`).
 
+## Publicación (GitHub Pages)
+
+El repo se publica como sitio estático (GitHub Pages requiere repo público en el plan free).
+Para que no sea indexable por buscadores y solo accesible por quien tenga el link:
+
+- `robots.txt` en la raíz bloquea todo crawling (`Disallow: /`).
+- Cada informe HTML debe incluir en el `<head>`:
+  ```html
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <meta name="googlebot" content="noindex, nofollow">
+  ```
+- No hay `index.html` que liste los informes — cada versión solo es accesible con su URL exacta.
+- No enlazar el sitio desde ningún lugar público (LinkedIn, sitios indexados, etc.).
+
 ## Estructura
 
 ```
