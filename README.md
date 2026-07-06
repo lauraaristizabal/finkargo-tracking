@@ -44,7 +44,9 @@ Para que no sea indexable por buscadores y solo accesible por quien tenga el lin
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <meta name="googlebot" content="noindex, nofollow">
   ```
-- No hay `index.html` que liste los informes — cada versión solo es accesible con su URL exacta.
+- `index.html` en la raíz redirige al informe vigente (sin él, GitHub Pages muestra el README como
+  home). Al publicar una versión nueva, actualizar la URL de destino en `index.html`
+  (`meta http-equiv="refresh"` y el `location.replace(...)`).
 - No enlazar el sitio desde ningún lugar público (LinkedIn, sitios indexados, etc.).
 
 ## Estructura
