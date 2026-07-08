@@ -172,6 +172,7 @@
   .g4{grid-template-columns:repeat(4,1fr)}
   .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
   .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:var(--marino-14)}
+  .card-ic{width:34px;height:34px;border-radius:9px;background:var(--marino-08);color:var(--fk-marino);display:grid;place-items:center;font-weight:700;font-size:1.05rem;margin-bottom:10px}
   .card .tag{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--fk-marino)}
   .card h3{margin:12px 0 8px;font-size:1.06rem}
   .card p{font-size:.92rem;color:var(--ink-2)}
@@ -204,6 +205,7 @@
   .persona .ring{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-weight:900;color:#fff;font-size:1.1rem;background:linear-gradient(135deg,var(--fk-marino),#4a52d6)}
   .persona h3{margin:16px 0 4px}
   .persona .role{font-size:.82rem;font-weight:700;color:var(--fk-marino);text-transform:uppercase;letter-spacing:.06em}
+  .persona .p-icon{margin-left:6px;color:var(--fk-marino)}
   .persona dl{margin-top:16px;display:flex;flex-direction:column;gap:10px}
   .persona dt{font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
   .persona dd{font-size:.92rem;color:var(--ink-2)}
@@ -248,6 +250,7 @@
   .st.s-done{background:#e7f7ee;color:#12794a}
   .st.s-now{background:rgba(120,247,255,.2);color:#0b5560}
   .st.s-next{background:var(--marino-08);color:var(--fk-marino)}
+  .st.s-qa{background:#fff4d6;color:#8a5a00}
 
   /* ============ PLAN ============ */
   .plan-row{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:26px 0;border-bottom:1px solid var(--line);align-items:start}
@@ -356,13 +359,13 @@
       <div class="logo">
         <img class="brand" src="data:image/png;base64,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" alt="Finkargo">
       </div>
-      <span class="hero-badge">Confidencial · Uso interno</span>
+      <span class="hero-badge">Producto</span>
     </div>
 
     <div class="hero-body">
       <span class="kicker">Vertical Agéntica · Producto</span>
       <h1>Underway <span class="hl">Discovery</span></h1>
-      <p class="hero-sub">Síntesis de dos semanas de descubrimiento en Finkargo: entendimiento del negocio, panorama del terreno y el plan de acción con el que la vertical de agentes de IA aporta al momento más importante de la compañía.</p>
+      <p class="hero-sub">Síntesis de dos semanas de descubrimiento en Finkargo: entendimiento del negocio, operación de las áreas y el plan de acción con el que la vertical de agentes de IA aporta al momento más importante de la compañía.</p>
 
       <div class="hero-meta">
         <div class="m"><span class="lbl">Realizado por</span><span class="val">Laura Aristizabal · Senior PM</span></div>
@@ -378,12 +381,12 @@
   <div class="wrap inner">
     <div class="logo"><img class="brand" src="data:image/png;base64,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" alt="Finkargo"></div>
     <div class="links">
-      <a href="#partida">Punto de partida</a>
+      <a href="#partida">Puerto Origen</a>
       <a href="#panorama">Panorama</a>
       <a href="#estrategia">Estrategia</a>
       <a href="#roadmap">Roadmap Q3</a>
-      <a href="#resultados">Resultados</a>
-      <a href="#siguiente">Siguiente</a>
+      <a href="#resultados">Indicadores</a>
+      <a href="#siguiente">Próximo Puerto</a>
     </div>
   </div>
 </nav>
@@ -392,11 +395,12 @@
 <section id="partida" class="alt">
   <div class="wrap">
     <div class="reveal" style="max-width:74ch">
-      <span class="eyebrow">Mi punto de partida</span>
-      <p class="lead" style="margin-top:18px">Entre el 22 de junio y el 3 de julio recorrí <strong>8 áreas</strong> de Finkargo a través de conversaciones 1:1 y sesiones grupales. El objetivo: entender el negocio, sus retos y sus prioridades antes de enfocarme de lleno en construir agentes. Esto es lo que encontré y hacia dónde voy.</p>
+      <span class="eyebrow">Puerto Origen</span>
+      <p class="lead" style="margin-top:18px">Entre el 22 de junio y el 6 de julio recorrí <strong>10 áreas</strong> de Finkargo a través de conversaciones 1:1 y sesiones grupales. El objetivo: entender el negocio, sus retos y sus prioridades antes de enfocarme de lleno en construir agentes. Esto es lo que encontré y hacia dónde voy.</p>
       <div class="card reveal d1" style="margin-top:26px">
         <h3>Construir el sistema, no solo el agente</h3>
-        <p>Mi mandato es centralizar los requerimientos de la vertical, sincronizar la visión de negocio con el plan de la célula técnica, y definir <strong>flujos completos</strong> — no funcionalidades aisladas. El foco inmediato es <strong>Yeyo</strong>, el agente conversacional de WhatsApp para financiamiento: la primera pieza cara al cliente. El norte detrás de ambos: sistemas agénticos que le den al cliente una experiencia eficiente y aumenten la adopción de todo el portafolio de Finkargo.</p>
+        <p>Mi mandato es centralizar los requerimientos de la vertical, sincronizar la visión de negocio con el plan de la célula técnica, y definir <strong>flujos completos</strong> — no funcionalidades aisladas.</p>
+        <p style="margin-top:14px">El foco inmediato es <strong>Yeyo</strong>, el agente orquestador que permite abrir la conversación en doble vía con los clientes a través de WhatsApp para resolver sus consultas — Yeyo 1.0 para escalar. <strong class="accent">El norte detrás de ambos: sistemas agénticos que le den al cliente una experiencia eficiente y aumenten la adopción de todo el portafolio de Finkargo.</strong></p>
       </div>
     </div>
   </div>
@@ -411,64 +415,80 @@
       <p>Lo que cada conversación aportó al mapa. Estos son los hilos que conectan la operación con la oportunidad agéntica.</p>
     </div>
     <div class="grid g3">
-      <div class="card reveal"><div class="tag">Producto &amp; Diseño</div><h3>Productos con base psicográfica</h3><p>Opera integrada como R&amp;D bajo Nando González y Cata Segovia. El diseño no parte de cargo o demografía, sino del perfil psicográfico del usuario — eso define cómo se construye cada agente desde el día uno.</p></div>
-      <div class="card reveal d1"><div class="tag">Tech / Ingeniería</div><h3>Célula Flow</h3><p>Construye agentes conversacionales que reemplazan formularios, sobre un framework propio agnóstico al motor de IA. Principio rector: flujo primero.</p></div>
-      <div class="card reveal d2"><div class="tag">Finkargo Brain</div><h3>El backbone de datos</h3><p>Orquestador interno en producción con 600k+ documentos indexados. Es la capa sobre la que se apoyan todos los agentes.</p></div>
-      <div class="card reveal"><div class="tag">Data</div><h3>Señales de importación</h3><p>Datos DIAN/SAT en el data warehouse alimentan las alertas proactivas y el scoring de crédito.</p></div>
-      <div class="card reveal d1"><div class="tag">Arquitectura</div><h3>Migración a microservicios</h3><p>Plataforma de 4 años en proceso de modernización; la dirección es migrar la interacción del cliente a WhatsApp.</p></div>
-      <div class="card reveal d2"><div class="tag">Comercial / Loyalty</div><h3>Colombia ≠ México</h3><p>Perfiles de uso, regulación y activación distintos por país. Insumo clave para secuenciar el rollout de los agentes.</p></div>
-      <div class="card reveal"><div class="tag">Marketing / Revenue</div><h3>Medir el comportamiento</h3><p>Hoy falta visibilidad estandarizada del comportamiento del cliente — justo el dato que la Serie B necesita ver.</p></div>
-      <div class="card reveal d1"><div class="tag">Business Automation</div><h3>Cultura de IA interna</h3><p>Automatización de procesos y un programa de "AI Champions" ya en marcha — terreno fértil y aliado para lo agéntico.</p></div>
+      <div class="card reveal"><div class="card-ic">✎</div><div class="tag">Producto &amp; Diseño</div><h3>Productos con base psicográfica</h3><p>Opera integrada como R&amp;D bajo Nando González y Cata Segovia. El diseño no parte de cargo o demografía, sino del perfil psicográfico del usuario — eso define cómo se construye cada agente desde el día uno.</p></div>
+      <div class="card reveal d1"><div class="card-ic">⌘</div><div class="tag">Tech / Ingeniería</div><h3>Célula Flow</h3><p>Construye agentes conversacionales que reemplazan formularios, sobre un framework propio agnóstico al motor de IA. Yeyo mismo es un coordinador de sub-agentes, no uno solo, y el equipo ya está desacoplando su dependencia de un único proveedor de modelo. Principio rector: flujo primero.</p></div>
+      <div class="card reveal d2"><div class="card-ic">◆</div><div class="tag">Finkargo Brain</div><h3>El backbone de datos</h3><p>Orquestador interno en producción con 600k+ documentos indexados. Es la capa sobre la que se apoyan todos los agentes.</p></div>
+      <div class="card reveal"><div class="card-ic">▤</div><div class="tag">Data</div><h3>Señales de importación</h3><p>Datos DIAN/SAT en el data warehouse alimentan las alertas proactivas y el scoring de crédito.</p></div>
+      <div class="card reveal d1"><div class="card-ic">⬡</div><div class="tag">Arquitectura</div><h3>Migración a microservicios</h3><p>Plataforma de 4 años en proceso de modernización; la dirección es migrar la interacción del cliente a WhatsApp.</p></div>
+      <div class="card reveal d2"><div class="card-ic">◐</div><div class="tag">Comercial / Loyalty</div><h3>Colombia ≠ México</h3><p>Perfiles de uso, regulación y activación distintos por país. Insumo clave para secuenciar el rollout de los agentes.</p></div>
+      <div class="card reveal"><div class="card-ic">◷</div><div class="tag">Marketing / Revenue</div><h3>Medir el comportamiento</h3><p>Hoy falta visibilidad estandarizada del comportamiento del cliente — justo el dato que la Serie B necesita ver.</p></div>
+      <div class="card reveal d1"><div class="card-ic">⚙</div><div class="tag">Business Automation</div><h3>Cultura de IA interna</h3><p>Automatización de procesos y un programa de "AI Champions" ya en marcha — terreno fértil y aliado para lo agéntico.</p></div>
+      <div class="card reveal d2"><div class="card-ic">▣</div><div class="tag">Lending / Operaciones</div><h3>La garantía como termómetro</h3><p>~35 personas en mesa de control, collections y operaciones logísticas; comité de crédito diario y dos terceras partes del volumen en México. La garantía logística (mínimo 50% en carga real) es el mecanismo que sostiene cada operación.</p></div>
+      <div class="card reveal"><div class="card-ic">⇄</div><div class="tag">Canal Brokers</div><h3>El canal que superó a los demás</h3><p>Más del 85% del crecimiento en México pasa hoy por 200+ brokers independientes y 10 master brokers — pero solo el 1% ha activado un cliente. Ahí vive buena parte del 75% que todavía no financia con Finkargo.</p></div>
     </div>
 
     <div class="reveal" style="margin-top:36px">
       <h3 style="margin-bottom:4px">Enfoque actual</h3>
-      <p style="font-size:.95rem;max-width:64ch;margin-bottom:20px">El tránsito de un producto puntual a una operación completa del cliente.</p>
+      <p style="font-size:.95rem;max-width:64ch;margin-bottom:20px">Los tres frentes del negocio convergen en Importación como Centro. El sistema agéntico construido sobre Yeyo no es un frente más: es la capa transversal que los atraviesa a todos.</p>
       <div class="journey">
-        <svg viewBox="0 0 900 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="journeyTitle journeyDesc">
-          <title id="journeyTitle">Journey estratégico: de transacción a plataforma</title>
-          <desc id="journeyDesc">Paga como entrada puntual, Yeyo por WhatsApp como conversación continua, Importación como Centro como visibilidad 360 grados</desc>
+        <svg viewBox="0 0 900 380" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="journeyTitle journeyDesc">
+          <title id="journeyTitle">Importación como Centro, con Yeyo como capa agéntica transversal</title>
+          <desc id="journeyDesc">Los tres frentes del negocio — Financiamiento (Paga y Lending), Logística (tracking de carga y Protege) y Pagos (Payments y FX) — convergen en Importación como Centro. El sistema agéntico construido sobre Yeyo es transversal a los tres frentes, no un frente más.</desc>
           <defs>
             <marker id="arrowHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
               <path d="M0,0 L10,5 L0,10 z" fill="#2128B1"></path>
             </marker>
           </defs>
-          <line x1="222" y1="110" x2="330" y2="110" stroke="#2128B1" stroke-width="2.5" marker-end="url(#arrowHead)"></line>
-          <line x1="572" y1="110" x2="680" y2="110" stroke="#2128B1" stroke-width="2.5" marker-end="url(#arrowHead)"></line>
+
+          <line x1="150" y1="140" x2="370" y2="185" stroke="#2128B1" stroke-width="2.5" marker-end="url(#arrowHead)"></line>
+          <line x1="450" y1="140" x2="450" y2="185" stroke="#2128B1" stroke-width="2.5" marker-end="url(#arrowHead)"></line>
+          <line x1="750" y1="140" x2="530" y2="185" stroke="#2128B1" stroke-width="2.5" marker-end="url(#arrowHead)"></line>
+
           <g>
-            <rect x="30" y="45" width="192" height="130" rx="16" ry="16" fill="#FFFFFF" stroke="#2128B1" stroke-width="2"></rect>
-            <rect x="96" y="66" width="60" height="60" rx="14" ry="14" fill="#2128B1"></rect>
-            <rect x="112" y="82" width="28" height="20" rx="3" ry="3" fill="#FFFFFF"></rect>
-            <line x1="112" y1="90" x2="140" y2="90" stroke="#2128B1" stroke-width="2"></line>
-            <text x="126" y="150" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="18" font-weight="700" fill="#060735">Paga</text>
-            <text x="126" y="168" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="11.5" fill="#2128B1">Entrada puntual</text>
+            <rect x="20" y="20" width="260" height="120" rx="16" ry="16" fill="#FFFFFF" stroke="#2128B1" stroke-width="2"></rect>
+            <text x="150" y="63" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="26" fill="#2128B1">◈</text>
+            <text x="150" y="92" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="16" font-weight="700" fill="#060735">Financiamiento</text>
+            <text x="150" y="110" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="11" fill="#2128B1">Paga · Lending</text>
           </g>
           <g>
-            <rect x="330" y="45" width="242" height="130" rx="16" ry="16" fill="#2128B1" stroke="#2128B1" stroke-width="2"></rect>
-            <path d="M451 66 h60 a14 14 0 0 1 14 14 v28 a14 14 0 0 1 -14 14 h-38 l-14 14 v-14 h-8 a14 14 0 0 1 -14 -14 v-28 a14 14 0 0 1 14 -14 z" fill="#78F7FF"></path>
-            <circle cx="463" cy="94" r="3.2" fill="#060735"></circle>
-            <circle cx="481" cy="94" r="3.2" fill="#060735"></circle>
-            <circle cx="499" cy="94" r="3.2" fill="#060735"></circle>
-            <text x="451" y="150" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="17" font-weight="700" fill="#FFFFFF">Yeyo · WhatsApp</text>
-            <text x="451" y="168" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="11.5" fill="#78F7FF">Conversación continua</text>
+            <rect x="320" y="20" width="260" height="120" rx="16" ry="16" fill="#FFFFFF" stroke="#2128B1" stroke-width="2"></rect>
+            <text x="450" y="63" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="26" fill="#2128B1">▣</text>
+            <text x="450" y="92" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="16" font-weight="700" fill="#060735">Logística</text>
+            <text x="450" y="110" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="11" fill="#2128B1">Tracking de carga · Protege</text>
           </g>
           <g>
-            <rect x="680" y="45" width="192" height="130" rx="16" ry="16" fill="#060735" stroke="#78F7FF" stroke-width="2.5"></rect>
-            <circle cx="776" cy="90" r="26" fill="none" stroke="#78F7FF" stroke-width="2.5"></circle>
-            <circle cx="776" cy="90" r="4.5" fill="#78F7FF"></circle>
-            <circle cx="776" cy="64" r="3.5" fill="#78F7FF"></circle>
-            <circle cx="802" cy="90" r="3.5" fill="#78F7FF"></circle>
-            <circle cx="776" cy="116" r="3.5" fill="#78F7FF"></circle>
-            <circle cx="750" cy="90" r="3.5" fill="#78F7FF"></circle>
-            <line x1="776" y1="90" x2="776" y2="64" stroke="#78F7FF" stroke-width="1.5"></line>
-            <line x1="776" y1="90" x2="802" y2="90" stroke="#78F7FF" stroke-width="1.5"></line>
-            <line x1="776" y1="90" x2="776" y2="116" stroke="#78F7FF" stroke-width="1.5"></line>
-            <line x1="776" y1="90" x2="750" y2="90" stroke="#78F7FF" stroke-width="1.5"></line>
-            <text x="776" y="140" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="14.5" font-weight="700" fill="#FFFFFF">
-              <tspan x="776" dy="0">Importación</tspan>
-              <tspan x="776" dy="14">como Centro</tspan>
+            <rect x="620" y="20" width="260" height="120" rx="16" ry="16" fill="#FFFFFF" stroke="#2128B1" stroke-width="2"></rect>
+            <text x="750" y="63" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="26" fill="#2128B1">⇄</text>
+            <text x="750" y="92" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="16" font-weight="700" fill="#060735">Pagos</text>
+            <text x="750" y="110" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="11" fill="#2128B1">Payments · FX</text>
+          </g>
+
+          <g>
+            <rect x="300" y="185" width="300" height="130" rx="18" ry="18" fill="#060735" stroke="#78F7FF" stroke-width="2.5"></rect>
+            <circle cx="450" cy="228" r="24" fill="none" stroke="#78F7FF" stroke-width="2.5"></circle>
+            <circle cx="450" cy="228" r="4.5" fill="#78F7FF"></circle>
+            <circle cx="450" cy="204" r="3.5" fill="#78F7FF"></circle>
+            <circle cx="474" cy="228" r="3.5" fill="#78F7FF"></circle>
+            <circle cx="450" cy="252" r="3.5" fill="#78F7FF"></circle>
+            <circle cx="426" cy="228" r="3.5" fill="#78F7FF"></circle>
+            <line x1="450" y1="228" x2="450" y2="204" stroke="#78F7FF" stroke-width="1.5"></line>
+            <line x1="450" y1="228" x2="474" y2="228" stroke="#78F7FF" stroke-width="1.5"></line>
+            <line x1="450" y1="228" x2="450" y2="252" stroke="#78F7FF" stroke-width="1.5"></line>
+            <line x1="450" y1="228" x2="426" y2="228" stroke="#78F7FF" stroke-width="1.5"></line>
+            <text x="450" y="278" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">
+              <tspan x="450" dy="0">Importación</tspan>
+              <tspan x="450" dy="18">como Centro</tspan>
             </text>
-            <text x="776" y="168" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="11.5" fill="#78F7FF">Visibilidad 360°</text>
+            <text x="450" y="303" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="11" fill="#78F7FF">Visibilidad 360°</text>
+          </g>
+
+          <line x1="150" y1="335" x2="150" y2="141" stroke="#2128B1" stroke-width="1.5" stroke-dasharray="4 4" opacity=".45"></line>
+          <line x1="450" y1="335" x2="450" y2="316" stroke="#2128B1" stroke-width="1.5" stroke-dasharray="4 4" opacity=".45"></line>
+          <line x1="750" y1="335" x2="750" y2="141" stroke="#2128B1" stroke-width="1.5" stroke-dasharray="4 4" opacity=".45"></line>
+
+          <g>
+            <rect x="20" y="335" width="860" height="45" rx="14" ry="14" fill="#2128B1"></rect>
+            <text x="450" y="362" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="14" font-weight="700" fill="#78F7FF">Yeyo · Sistema agéntico transversal</text>
           </g>
         </svg>
       </div>
@@ -481,8 +501,8 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Estrategia</span>
-      <h2>Finkargo no es una plataforma de financiamiento.</h2>
-      <p>Es <strong>el sistema operativo del comercio exterior</strong>: dinero, carga y relación con el cliente en un mismo lugar — un espacio que ningún banco, agente de carga ni ERP de pyme ocupa hoy. Yeyo es la primera materialización de esa tesis, diseñada sobre el usuario real, no sobre el promedio.</p>
+      <h2>Finkargo como sistema operativo de comercio exterior</h2>
+      <p>Basado en <strong>estructuras agénticas</strong> que generan flujos operativos eficientes para agilizar la transaccionalidad y la satisfacción del cliente, centralizando la visibilidad de flujos de dinero, la trazabilidad de mercancías y la interacción con el cliente: un espacio que ningún banco, agente de carga ni ERP de pyme ocupa hoy. Yeyo es la primera materialización de esa tesis, diseñada sobre el usuario real, no sobre el promedio.</p>
     </div>
 
     <h3 style="margin-bottom:16px">El modelo y la ventana</h3>
@@ -518,19 +538,19 @@
     <div class="grid g3">
       <div class="persona reveal">
         <div class="ring">E</div>
-        <div class="role">Especialista de rol</div>
+        <div class="role">Especialista de rol<span class="p-icon">◎</span></div>
         <h3>Amplificar su criterio</h3>
         <p>Ejecuta con visión de túnel y se autoprotege; rechaza "te automatizamos el trabajo". Se gana con human-in-the-loop que amplifica su criterio, no lo reemplaza.</p>
       </div>
       <div class="persona reveal d1">
         <div class="ring">C</div>
-        <div class="role">El colaborativo</div>
+        <div class="role">El colaborativo<span class="p-icon">⇄</span></div>
         <h3>Habilitar velocidad</h3>
         <p>Traduce información dispersa para su equipo; rechaza cambiar su método manual sin sentirse seguro. Se gana dándole velocidad, no automatizando por él.</p>
       </div>
       <div class="persona reveal d2">
         <div class="ring">T</div>
-        <div class="role">El todólogo</div>
+        <div class="role">El todólogo<span class="p-icon">◉</span></div>
         <h3>Ver todo antes que nadie</h3>
         <p>Controla todo a la vez y es quien firma la decisión de usar Finkargo; rechaza sentirse reemplazable. Se gana con "ve todo antes que nadie", no "lo hacemos por ti".</p>
       </div>
@@ -569,20 +589,19 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Roadmap Q3 2026</span>
-      <h2>Cuatro agentes, una secuencia</h2>
-      <p>El roadmap converge en septiembre en un agente orquestador de flujo de caja. Cada mes suma una capacidad sobre un flujo ya validado — y define dónde pongo el peso como PM para que la compañía cumpla su objetivo de adopción y asegure la demo de la Serie B.</p>
+      <h2>Evolución hacia Importación como Centro</h2>
+      <p>Yeyo escala en cuatro versiones hacia el cierre de Q3: cada una suma una capacidad sobre la anterior, desde resolver consultas hasta orquestar el onboarding completo — y define dónde pongo el peso como PM para que la compañía cumpla su objetivo de adopción y asegure la demo de la Serie B.</p>
     </div>
     <div class="tl reveal">
       <div class="tl-track">
-        <div class="tl-step done">
+        <div class="tl-step">
           <div class="dot"></div>
           <div class="tl-card">
             <div class="mo">Junio</div>
-            <h4>Financing Agent</h4>
-            <p>V1.0 en vivo: solicitud de operación desde el chat.</p>
-            <span class="st s-done">Hito cumplido</span>
+            <h4>Yeyo 1.0 — Consultas</h4>
+            <p>Construido en junio; hoy en certificación de QA.</p>
+            <span class="st s-qa">En certificación QA</span>
             <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--line)">
-              <div style="font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--fk-marino);margin-bottom:6px">Yo, este mes</div>
               <p style="font-size:.82rem;color:var(--ink-3)">Validé el flujo base sobre el que se construye todo lo que sigue.</p>
             </div>
           </div>
@@ -591,11 +610,10 @@
           <div class="dot"></div>
           <div class="tl-card">
             <div class="mo">Julio</div>
-            <h4>Logistics Agent</h4>
-            <p>Onboarding por WhatsApp, tracking de carga y notificaciones proactivas.</p>
+            <h4>Yeyo 2.0 — Alertas y pagos</h4>
+            <p>Alertas proactivas de vencimiento y ejecución de pagos desde la conversación.</p>
             <span class="st s-now">En curso</span>
             <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--line)">
-              <div style="font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--fk-marino);margin-bottom:6px">Yo, este mes</div>
               <ul style="list-style:none;display:flex;flex-direction:column;gap:4px">
                 <li style="font-size:.82rem;color:var(--ink-3)">Yeyo en staging validado, con extracción de documentos confiable para la demo de la Serie B.</li>
                 <li style="font-size:.82rem;color:var(--ink-3)">Marco de métricas de adopción definido y conectado a Finkargo Brain.</li>
@@ -607,14 +625,13 @@
           <div class="dot"></div>
           <div class="tl-card">
             <div class="mo">Agosto</div>
-            <h4>Payments Agent</h4>
-            <p>Pay links y ejecución de pagos desde la conversación.</p>
+            <h4>Yeyo 3.0 — Solicitar nueva operación</h4>
+            <p>El cliente inicia una nueva operación de financiamiento directo desde el chat.</p>
             <span class="st s-next">Planeado</span>
             <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--line)">
-              <div style="font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--fk-marino);margin-bottom:6px">Yo, este mes</div>
               <ul style="list-style:none;display:flex;flex-direction:column;gap:4px">
                 <li style="font-size:.82rem;color:var(--ink-3)">Transición completa de la propiedad de Yeyo, con documentación viva y criterios de aceptación claros.</li>
-                <li style="font-size:.82rem;color:var(--ink-3)">Logística y pagos integrados al agente, definidos como flujos completos con QA desde la ideación.</li>
+                <li style="font-size:.82rem;color:var(--ink-3)">Flujo de solicitud de operación definido end-to-end, con QA desde la ideación.</li>
               </ul>
             </div>
           </div>
@@ -623,13 +640,12 @@
           <div class="dot"></div>
           <div class="tl-card">
             <div class="mo">Septiembre</div>
-            <h4>Cashflow Orchestrator</h4>
-            <p>Agente orquestador con pre-costing. Cierre de Q3.</p>
+            <h4>Yeyo 4.0 — Onboarding</h4>
+            <p>Onboarding conversacional completo por WhatsApp. Cierre de Q3.</p>
             <span class="st s-next">Meta Q3 ★</span>
             <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--line)">
-              <div style="font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--fk-marino);margin-bottom:6px">Yo, este mes</div>
               <ul style="list-style:none;display:flex;flex-direction:column;gap:4px">
-                <li style="font-size:.82rem;color:var(--ink-3)">Cashflow Orchestrator con pre-costing, en demo redonda para el cierre de Q3.</li>
+                <li style="font-size:.82rem;color:var(--ink-3)">Onboarding conversacional en demo redonda para el cierre de Q3.</li>
                 <li style="font-size:.82rem;color:var(--ink-3)">Métricas de adopción consolidadas como insumo de la ronda; primeros clientes recurrentes en México, base lista para Colombia en Q4.</li>
               </ul>
             </div>
@@ -649,7 +665,7 @@
 <section id="resultados">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Resultados</span>
+      <span class="eyebrow">Indicadores</span>
       <h2>Las palancas que lidero y cómo mediré el éxito</h2>
       <p>Cada reto identificado en el Discovery es una palanca de valor. Estas son las cifras contra las que mediré el progreso en cada corte mensual de este informe.</p>
     </div>
@@ -691,7 +707,7 @@
 <section id="siguiente">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Próximos pasos</span>
+      <span class="eyebrow">Próximo Puerto</span>
       <h2>Un documento vivo</h2>
       <p>Este informe se regenera cada mes. No es una foto — es una línea de tiempo del progreso de la vertical hacia el cierre de Q3.</p>
     </div>
